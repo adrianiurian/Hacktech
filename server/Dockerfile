@@ -2,8 +2,6 @@
 FROM python:3.12-slim
 
 # Set the working directory in the container
-RUN ls
-RUN cd ./server
 WORKDIR /usr/src/app
 
 # Copy the project files into the container at /usr/src/app
