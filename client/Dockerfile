@@ -6,6 +6,8 @@ WORKDIR /app
 RUN echo "CLIENT_ID: ${CLIENT_ID}\n" > .env
 RUN echo "REDIRECT_URI: ${REDIRECT_URI}" >> .env
 
+RUN cat .env
+
 COPY package.json package-lock.json ./
 RUN npm install
 
