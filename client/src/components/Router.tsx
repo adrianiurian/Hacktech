@@ -6,6 +6,7 @@ import { useContext } from "react";
 import UserContext from "../store/UserContext";
 import VisitorLayout from "../layouts/Visitor";
 import RequestPage from "../pages/Request";
+import DocumentsPage from "../pages/Documents";
 
 const visitorRouter = createBrowserRouter([
     {
@@ -29,10 +30,10 @@ const userRouter = createBrowserRouter([
                 path: "/",
                 element: <HomePage />,
             },
-            // {
-            //     path: "/documents",
-            //     element: <DocumentsPage />
-            // },
+            {
+                path: "/documents",
+                element: <DocumentsPage />,
+            },
             {
                 path: "/request-referral",
                 element: <RequestPage />,
