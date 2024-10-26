@@ -31,6 +31,7 @@ COPY . /usr/src/app
 COPY start.sh /usr/src/app/
 RUN sed -i 's/\r$//' /usr/src/app/start.sh && chmod +x /usr/src/app/start.sh
 
+#Razvan e ciocan
 EXPOSE 8001
 
 # Command to run the start.sh script
