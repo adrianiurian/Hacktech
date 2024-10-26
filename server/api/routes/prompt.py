@@ -26,10 +26,10 @@ def get_questions(symptom: BodySymptom, db_session = Depends(get_db_session)):
 
     logger.info("Symptoms: " + symptoms)
 
-    new_symptom = Symptom(1, symptom.symptoms, "1234")
+    # new_symptom = Symptom(13, symptom.symptoms, "1234")
 
-    db_session.add(new_symptom)
-    db_session.commit()
+    # db_session.add(new_symptom)
+    # db_session.commit()
 
     PROMPT = """
     You are a helpful assistant specialized in medical questions. You are given a list of symptoms and should only respond in a valid json.
