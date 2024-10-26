@@ -8,17 +8,19 @@ interface InputProps {
     id?: string;
     type?: string;
     value?: string | number;
+    rows?: number;
     onChange: (value: string | number) => void;
 }
 
 export default function Input({
     textarea = false,
-    className,
+    className = "",
     label,
     id,
     type = "text",
     value,
     onChange,
+    rows, // Destructuring rows prop
     ...props
 }: InputProps) {
     const [showPassword, setShowPassword] = useState(false);
@@ -45,7 +47,8 @@ export default function Input({
                         id={id}
                         value={value}
                         placeholder={label}
-                        onChange={(event) => handleChange(event)}
+                        onChange={handleChange}
+                        rows={rows} // Applying rows to textarea
                         {...props}
                     ></textarea>
                 ) : (
@@ -53,24 +56,24 @@ export default function Input({
                         type={
                             type === "password" && !showPassword
                                 ? "password"
-                                : "text"
+                                : type
                         }
                         id={id}
                         value={value}
                         placeholder={label}
-                        onChange={(event) => handleChange(event)}
+                        onChange={handleChange}
                         {...props}
                     />
                 )}
                 {type === "password" && (
                     <span
-                        className='material-symbols-rounded password-icon'
+                        className="material-symbols-rounded password-icon"
                         onClick={togglePassword}
                     >
                         {showPassword ? "visibility_off" : "visibility"}
                     </span>
                 )}
-                <label htmlFor={id}>{label}</label>
+                {label && <label htmlFor={id}>{label}</label>}
             </div>
         </div>
     );

@@ -5,6 +5,7 @@ import HomePage from "../pages/Home";
 import { useContext } from "react";
 import UserContext from "../store/UserContext";
 import VisitorLayout from "../layouts/Visitor";
+import RequestPage from "../pages/Request";
 
 const visitorRouter = createBrowserRouter([
     {
@@ -32,10 +33,10 @@ const userRouter = createBrowserRouter([
             //     path: "/documents",
             //     element: <DocumentsPage />
             // },
-            // {
-            //     path: "/request-referral",
-            //     element: <RequestPage />,
-            // },
+            {
+                path: "/request-referral",
+                element: <RequestPage />,
+            },
         ],
     },
 ]);
