@@ -63,4 +63,7 @@ def get_questions(symptom: BodySymptom, response: Response, db_session = Depends
     res = requests.post(INFERENCE_LINK, headers=headers, data=json.dumps(data))
 
     decoder = json.JSONDecoder()
-    return decoder.decode(res.json()["response"])
+    questions = res.json()["response"]
+
+
+    return decoder.decode(questions)
