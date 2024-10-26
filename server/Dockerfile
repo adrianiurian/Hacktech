@@ -34,6 +34,5 @@ COPY . /usr/src/app
 #Razvan e ciocan
 EXPOSE 8001
 
-CMD ["uvicorn", "api.main:app", "--port", "8001"]
-# Command to run the start.sh script
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8001"]# Command to run the start.sh script
 # CMD ["/usr/src/app/start.sh"]
