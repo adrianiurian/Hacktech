@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
-from ..data.database import Base
+from data.database import Base
 from sqlalchemy.orm import relationship
-from users import User
+from model.users import User
 
 
 class HealthReport(Base):
