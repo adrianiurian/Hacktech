@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-from ..data.database import Base  # Adjust this import based on your project structure
-from .users import User  # Adjust this import based on your project structure
+from data.database import Base  # Adjust this import based on your project structure
+from model.users import User  # Adjust this import based on your project structure
 
 
 class Symptom(Base):
