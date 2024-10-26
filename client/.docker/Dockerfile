@@ -3,6 +3,9 @@ FROM node:18 AS build
 
 WORKDIR /client
 
+RUN ls -la
+RUN pwd
+
 COPY package.json package-lock.json ./
 RUN npm install
 
