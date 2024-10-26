@@ -3,8 +3,11 @@ FROM node:18 AS build
 
 WORKDIR /app
 
-RUN echo "CLIENT_ID: ${CLIENT_ID}\n" > .env
-RUN echo "REDIRECT_URI: ${REDIRECT_URI}" >> .env
+ARG CLIENT_ID
+ARG REDIRECT_URI
+
+RUN echo "CLIENT_ID: $CLIENT_ID\n" > .env
+RUN echo "REDIRECT_URI: $REDIRECT_URI" >> .env
 
 RUN cat .env
 
