@@ -17,12 +17,11 @@ router = APIRouter(prefix="/api/prompting", tags=["Prompting"], include_in_schem
 
 INFERENCE_LINK = "https://inference.ccrolabs.com/api/generate"
 
-class BodySymptom(BaseModel):
-    symptoms: str
+# class BodySymptom(BaseModel):
+#     symptoms: str
 
 @router.get("/questions")
-def get_questions(symptom: BodySymptom, db_session = Depends(get_db_session)):
-    symptoms = symptom.symptoms
+def get_questions(symptoms = Form(), db_session = Depends(get_db_session)):
 
     logger.info("Symptoms: " + symptoms)
 
