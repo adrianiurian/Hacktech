@@ -20,7 +20,7 @@ INFERENCE_LINK = "https://inference.ccrolabs.com/api/generate"
 class BodyMedication(BaseModel):
     medications: str
 
-@router.post("/create-medication")
+@router.post("/")
 def create_medication(medication: BodyMedication, response: Response, db_session = Depends(get_db_session)):
     medications_string = medication.medications
 

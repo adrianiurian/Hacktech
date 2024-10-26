@@ -21,7 +21,7 @@ class BodyReport(BaseModel):
     file_path: str
     user_id: str
 
-@router.post("/create-health-report")
+@router.post("/")
 def create_report(report: BodyReport, response: Response, db_session = Depends(get_db_session)):
     report_text = report.report_text
 

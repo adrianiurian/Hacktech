@@ -18,7 +18,7 @@ INFERENCE_LINK = "https://inference.ccrolabs.com/api/generate"
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-@router.post("/create-user")
+@router.post("/")
 def create_user(response: Response, token: str = Depends(oauth2_scheme), db_session=Depends(get_db_session)):
     new_user = User(token)
     db_session.add(new_user)
