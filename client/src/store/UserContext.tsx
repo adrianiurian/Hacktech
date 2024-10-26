@@ -6,6 +6,7 @@ import {
     doSignInWithGoogle,
     doSignOut,
 } from "../api/AuthAPI";
+import axios, { AxiosStatic } from "axios";
 
 type UserContextType = {
     email: string;
@@ -14,6 +15,7 @@ type UserContextType = {
     login: (email: string, password: string) => void;
     googleLogin: () => void;
     logout: () => void;
+    axiosAPI: AxiosStatic;
 };
 
 const UserContext = createContext<UserContextType>({
@@ -27,6 +29,7 @@ const UserContext = createContext<UserContextType>({
         console.log(something);
     },
     logout: () => {},
+    axiosAPI: axios,
 });
 export default UserContext;
 
@@ -56,6 +59,7 @@ export function UserContextProvider({
             const token = await user.getIdToken();
             console.log(token);
             setToken(token);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         } else {
             console.log("logout");
         }
@@ -89,6 +93,7 @@ export function UserContextProvider({
         email: email || "",
         name: name || "",
         token: token || "",
+        axiosAPI: axios,
         login,
         googleLogin,
         logout,
