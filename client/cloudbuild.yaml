@@ -6,7 +6,7 @@ steps:
               "build",
               "-t",
               "gcr.io/$PROJECT_ID/hacktech-deploy:$COMMIT_SHA",
-              "./client/Dockerfile",
+              "./client",
           ]
     # Push the container image to Container Registry
     - name: "gcr.io/cloud-builders/docker"
