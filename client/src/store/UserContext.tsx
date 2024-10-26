@@ -1,6 +1,5 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 
-
 type UserContextType = {
     email: string;
     name: string;
