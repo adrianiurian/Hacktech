@@ -3,6 +3,9 @@ FROM node:18 AS build
 
 WORKDIR /app
 
+ARG CLIENT_ID
+ARG REDIRECT_URI
+
 ENV CLIENT_ID ${CLIENT_ID}
 ENV REDIRECT_URI ${REDIRECT_URI}
 
@@ -17,6 +20,6 @@ FROM nginx:alpine
 
 COPY --from=build /app/dist /usr/share/nginx/html
 
-EXPOSE 8080
+EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
