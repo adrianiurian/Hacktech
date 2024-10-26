@@ -6,7 +6,7 @@ WORKDIR /app
 ARG CLIENT_ID
 ARG REDIRECT_URI
 
-RUN echo "CLIENT_ID: $CLIENT_ID\n" > .env
+RUN echo "CLIENT_ID: $CLIENT_ID" > .env
 RUN echo "REDIRECT_URI: $REDIRECT_URI" >> .env
 
 RUN cat .env
@@ -21,6 +21,7 @@ RUN npm run build
 # Stage 2: Serve the application with nginx
 FROM nginx:alpine
 
+COPY .env /usr/share/nginx/html/.env
 COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 80
