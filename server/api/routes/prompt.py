@@ -21,7 +21,7 @@ class BodySymptom(BaseModel):
     symptoms: str
 
 @router.get("/questions")
-def get_questions(symptom: BodySymptom, response: Response, db_session = Depends(get_db_session)):
+def get_questions(symptom: BodySymptom, db_session = Depends(get_db_session)):
     symptoms = symptom.symptoms
 
     logger.info("Symptoms: " + symptoms)
