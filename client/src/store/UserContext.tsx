@@ -21,7 +21,11 @@ const UserContext = createContext<UserContextType>({
     name: "",
     token: "",
     googleLogin: () => {},
-    login: (email: string, password: string) => {},
+    login: (email: string, password: string) => {
+        let something = email + password;
+        something = "test";
+        console.log(something);
+    },
     logout: () => {},
 });
 export default UserContext;
@@ -34,7 +38,6 @@ export function UserContextProvider({
     const [email, setEmail] = useState<string | null>(null);
     const [name, setName] = useState<string | null>(null);
     const [token, setToken] = useState<string | null>(null);
-    const [loading, setLoading] = useState(true);
 
     // useEffect(() => {
     //     const storedToken = localStorage.getItem("token");
@@ -49,7 +52,6 @@ export function UserContextProvider({
     }, []);
 
     async function initializeUser(user: FirebaseUser | null) {
-        setLoading(true);
         if (user) {
             const token = await user.getIdToken();
             console.log(token);
@@ -57,7 +59,6 @@ export function UserContextProvider({
         } else {
             console.log("logout");
         }
-        setLoading(false);
     }
 
     const login = useCallback(async function login(
