@@ -12,13 +12,13 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-RUN echo $PORT
+RUN echo ${PORT}
 
 # Stage 2: Serve the application with nginx
 FROM nginx:alpine
 
 COPY --from=build /app/dist /usr/share/nginx/html
 
-EXPOSE $PORT
+EXPOSE ${PORT}
 
 CMD ["nginx", "-g", "daemon off;"]
