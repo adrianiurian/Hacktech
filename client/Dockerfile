@@ -3,6 +3,12 @@ FROM node:18 AS build
 
 WORKDIR /app
 
+ARG CLIENT_ID
+ARG REDIRECT_URI
+
+ENV CLIENT_ID=${CLIENT_ID}
+ENV REDIRECT_URI=${REDIRECT_URI}
+
 COPY package.json package-lock.json ./
 RUN npm install
 
