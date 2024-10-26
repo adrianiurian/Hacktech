@@ -4,11 +4,12 @@ import LoginPage from "../pages/Login";
 import HomePage from "../pages/Home";
 import { useContext } from "react";
 import UserContext from "../store/UserContext";
+import VisitorLayout from "../layouts/Visitor";
 
 const visitorRouter = createBrowserRouter([
     {
         path: "/",
-        element: <RootLayout />,
+        element: <VisitorLayout />,
         children: [
             {
                 path: "/",

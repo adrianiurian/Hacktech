@@ -9,22 +9,24 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
 
     return (
-        <>
-            <div>LoginPage</div>
-            <Input
-                label='Email'
-                value={email}
-                onChange={(value) => setEmail(value as string)}
-                id='email'
-            />
-            <Input
-                label='Password'
-                value={password}
-                onChange={(value) => setPassword(value as string)}
-                id='password'
-                type='password'
-            />
-            <div className='flex flex-row'>
+        <div className='flex flex-col items-center'>
+            <h2 className='font-semibold pb-12'>Login</h2>
+            <div className='flex flex-col gap-6'>
+                <Input
+                    label='Email'
+                    value={email}
+                    onChange={(value) => setEmail(value as string)}
+                    id='email'
+                />
+                <Input
+                    label='Password'
+                    value={password}
+                    onChange={(value) => setPassword(value as string)}
+                    id='password'
+                    type='password'
+                />
+            </div>
+            <div className='flex flex-row pt-7 gap-6'>
                 <Button
                     onClick={userContext.googleLogin}
                     styleType='error'
@@ -39,6 +41,6 @@ export default function LoginPage() {
                     Login
                 </Button>
             </div>
-        </>
+        </div>
     );
 }
