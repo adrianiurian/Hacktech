@@ -7,7 +7,6 @@ export default function HomePage() {
     return (
         <>
             <div>HomePage</div>
-            <Button onClick={userContext.logout}>Log Out</Button>
         </>
     );
 }
