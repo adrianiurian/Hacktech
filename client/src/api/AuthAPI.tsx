@@ -24,6 +24,7 @@ export const doSignInWithEmailAndPassword = async (
 };
 
 export const doSignInWithGoogle = async () => {
+    console.log("doSignInWithGoogle");
     const provider = new GoogleAuthProvider();
     const result = await signInWithPopup(auth, provider);
     console.log(result);
