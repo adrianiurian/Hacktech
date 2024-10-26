@@ -9,6 +9,8 @@ RUN pwd
 COPY package.json package-lock.json .env ./
 RUN npm install
 
+RUN ls -la
+
 COPY . .
 RUN npm run build
 
