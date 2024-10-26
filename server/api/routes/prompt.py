@@ -64,3 +64,7 @@ def get_questions(symptom: BodySymptom, response: Response, db_session = Depends
 
     decoder = json.JSONDecoder()
     return decoder.decode(res.json()["response"])
+
+@router.get("/health")
+def check_health():
+    return "Api is Up!"
