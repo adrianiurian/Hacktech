@@ -19,5 +19,7 @@ steps:
               "--region",
               "europe-west4",
           ]
+options:
+    logging: CLOUD_LOGGING_ONLY
 images:
     - gcr.io/$PROJECT_ID/hacktech-deploy:$COMMIT_SHA
