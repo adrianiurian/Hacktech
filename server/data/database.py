@@ -3,14 +3,19 @@ from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base
 
 
 engine = create_engine('sqlite:///data/database.db')
-db_session = scoped_session(sessionmaker(autocommit=False,
-                                         autoflush=False,
-                                         bind=engine))
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
-Base.query = db_session.query_property()
 
-def init_db():
-    # import all modules here that might define models so that
-    # they will be registered properly on the metadata.  Otherwise
-    # you will have to import them first before calling init_db()
+
+def create_session():
+    session = SessionLocal()
     Base.metadata.create_all(bind=engine)
+    return session
+
+
+def get_db_session():
+    db_session = create_session()
+    try:
+        yield db_session
+    finally:
+        db_session.close()
