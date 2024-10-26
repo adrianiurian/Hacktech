@@ -20,7 +20,7 @@ export default function Input({
     type = "text",
     value,
     onChange,
-    rows, // Destructuring rows prop
+    rows,
     ...props
 }: InputProps) {
     const [showPassword, setShowPassword] = useState(false);
