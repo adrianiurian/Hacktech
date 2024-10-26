@@ -1,10 +1,11 @@
 steps:
     # Build the container image
     - name: "gcr.io/cloud-builders/docker"
-      args: ["build", "-t", "gcr.io/$PROJECT_ID/IMAGE", "."]
+      args:
+          ["build", "-t", "gcr.io/$PROJECT_ID/hacktech-deploy:$COMMIT_SHA", "."]
     # Push the container image to Container Registry
     - name: "gcr.io/cloud-builders/docker"
-      args: ["push", "gcr.io/$PROJECT_ID/IMAGE"]
+      args: ["push", "gcr.io/$PROJECT_ID/hacktech-deploy:$COMMIT_SHA"]
     # Deploy container image to Cloud Run
     - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
       entrypoint: gcloud
@@ -12,11 +13,11 @@ steps:
           [
               "run",
               "deploy",
-              "SERVICE_NAME",
+              "hacktech-deploy",
               "--image",
-              "gcr.io/PROJECT_ID/IMAGE",
+              "gcr.io/$PROJECT_ID/hacktech-deploy:$COMMIT_SHA",
               "--region",
-              "SERVICE_REGION",
+              "europe-west4",
           ]
 images:
-    - gcr.io/PROJECT_ID/IMAGE
+    - gcr.io/$PROJECT_ID/hacktech-deploy:$COMMIT_SHA
