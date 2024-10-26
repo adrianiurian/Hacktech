@@ -6,11 +6,13 @@ WORKDIR /client
 RUN ls -la
 RUN pwd
 
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json
 RUN npm install
 
 COPY . .
 RUN npm run build
+
+RUN ls -la
 
 # Stage 2: Serve the application with nginx
 FROM nginx:alpine
