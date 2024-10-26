@@ -1,10 +1,18 @@
+import { onAuthStateChanged, User as FirebaseUser } from "firebase/auth";
 import { createContext, useCallback, useEffect, useState } from "react";
+import { auth } from "../Firebase";
+import {
+    doSignInWithEmailAndPassword,
+    doSignInWithGoogle,
+    doSignOut,
+} from "../api/AuthAPI";
 
 type UserContextType = {
     email: string;
     name: string;
     token: string;
-    login: () => void;
+    login: (email: string, password: string) => void;
+    googleLogin: () => void;
     logout: () => void;
 };
 
@@ -12,18 +20,11 @@ const UserContext = createContext<UserContextType>({
     email: "",
     name: "",
     token: "",
-    login: () => {},
+    googleLogin: () => {},
+    login: (email: string, password: string) => {},
     logout: () => {},
 });
 export default UserContext;
-
-const oauth2Endpoint = "https://accounts.google.com/o/oauth2/v2/auth";
-const params = {
-    client_id: import.meta.env.CLIENT_ID,
-    redirect_uri: import.meta.env.REDIRECT_URI,
-    response_type: "token",
-    scope: "https://www.googleapis.com/auth/drive.metadata.readonly",
-};
 
 export function UserContextProvider({
     children,
@@ -33,36 +34,50 @@ export function UserContextProvider({
     const [email, setEmail] = useState<string | null>(null);
     const [name, setName] = useState<string | null>(null);
     const [token, setToken] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    // useEffect(() => {
+    //     const storedToken = localStorage.getItem("token");
+    //     if (storedToken) {
+    //         setToken(storedToken);
+    //     }
+    // }, []);
 
     useEffect(() => {
-        const storedToken = localStorage.getItem("token");
-        if (storedToken) {
-            setToken(storedToken);
-        } else {
-            console.log("useEffect else");
-            const hashParams = new URLSearchParams(
-                window.location.hash.substring(1)
-            );
-            const accessToken = hashParams.get("access_token");
-            console.log(accessToken);
-            if (accessToken) {
-                setToken(accessToken);
-                localStorage.setItem("token", accessToken);
-            }
-        }
+        const unsubscribe = onAuthStateChanged(auth, initializeUser);
+        return unsubscribe;
     }, []);
 
-    const login = useCallback(function login() {
-        console.log("login func");
-        const authUrl = `${oauth2Endpoint}?${new URLSearchParams(
-            params
-        ).toString()}`;
+    async function initializeUser(user: FirebaseUser | null) {
+        setLoading(true);
+        if (user) {
+            const token = await user.getIdToken();
+            console.log(token);
+            setToken(token);
+        } else {
+            console.log("logout");
+        }
+        setLoading(false);
+    }
 
-        window.location.href = authUrl;
+    const login = useCallback(async function login(
+        email: string,
+        password: string
+    ) {
+        console.log("login function");
+        await doSignInWithEmailAndPassword(email, password);
+    },
+    []);
+
+    const googleLogin = useCallback(function googleLogin() {
+        console.log("google login function");
+        doSignInWithGoogle().catch((err) => {
+            console.log(err);
+        });
     }, []);
 
     const logout = useCallback(function logout() {
-        // TODO add OAuth code
+        doSignOut();
         setEmail(null);
         setName(null);
         setToken(null);
@@ -74,6 +89,7 @@ export function UserContextProvider({
         name: name || "",
         token: token || "",
         login,
+        googleLogin,
         logout,
     };
 

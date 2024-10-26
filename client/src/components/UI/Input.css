@@ -1,0 +1,50 @@
+.input-field {
+    /* max-width: 500px; */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.input-field input,
+.input-field textarea {
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid black;
+    outline: none;
+    font-size: 16px;
+    font-family: "Lufga", sans-serif;
+}
+
+.input-field label {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    color: black;
+    font-size: 16px;
+    font-family: "Lufga", sans-serif;
+    background-color: white;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.input-field span {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.input-field input::placeholder,
+.input-field textarea::placeholder {
+    color: white;
+}
+
+.input-field input:focus ~ label,
+.input-field textarea:focus ~ label,
+.input-field input:not(:placeholder-shown) ~ label,
+.input-field textarea:not(:placeholder-shown) ~ label {
+    top: 0;
+    font-size: 14px;
+    padding: 0 10px;
+}
