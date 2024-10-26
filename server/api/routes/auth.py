@@ -9,8 +9,6 @@ from model.users import User
 
 from data.database import get_db_session
 
-import base64
-
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/auth", tags=["Authorization"], include_in_schema=False)
 

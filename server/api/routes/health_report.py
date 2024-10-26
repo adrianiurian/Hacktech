@@ -10,7 +10,7 @@ from pydantic import BaseModel
 
 
 logger = logging.getLogger(__name__)
-router = APIRouter(prefix="/api/create-health-report", tags=["Create-Medication"], include_in_schema=False)
+router = APIRouter(prefix="/api/create-health-report", tags=["Create-Health-Report"], include_in_schema=False)
 
 INFERENCE_LINK = "https://inference.ccrolabs.com/api/generate"
 
