@@ -28,11 +28,12 @@ RUN poetry install --no-dev --no-interaction --no-ansi
 COPY . /usr/src/app
 
 # Copy the start.sh script into the container and make it executable
-COPY start.sh /usr/src/app/
-RUN sed -i 's/\r$//' /usr/src/app/start.sh && chmod +x /usr/src/app/start.sh
+# COPY start.sh /usr/src/app/
+# RUN sed -i 's/\r$//' /usr/src/app/start.sh && chmod +x /usr/src/app/start.sh
 
 #Razvan e ciocan
 EXPOSE 8001
 
+RUN uvicorn api.main:app --reload --port 8001
 # Command to run the start.sh script
-CMD ["/usr/src/app/start.sh"]
+# CMD ["/usr/src/app/start.sh"]
