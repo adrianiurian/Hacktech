@@ -26,7 +26,7 @@ def get_questions(symptom: BodySymptom, response: Response, db_session = Depends
 
     logger.info("Symptoms: " + symptoms)
 
-    new_symptom = Symptom(1, symptom.symptoms, "1234")
+    new_symptom = Symptom(1, symptoms, "1234")
 
     db_session.add(new_symptom)
     db_session.commit()
