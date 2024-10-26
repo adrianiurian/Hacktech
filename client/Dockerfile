@@ -24,6 +24,8 @@ FROM nginx:alpine
 
 COPY --from=build /app/dist /usr/share/nginx/html
 
+RUN echo $PORT
+
 EXPOSE $PORT
 
 CMD ["nginx", "-g", "daemon off;"]
