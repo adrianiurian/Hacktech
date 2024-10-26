@@ -30,6 +30,8 @@ def get_questions(symptoms = Form(), db_session = Depends(get_db_session)):
     # db_session.add(new_symptom)
     # db_session.commit()
 
+    # wtf
+
     PROMPT = """
     You are a helpful assistant specialized in medical questions. You are given a list of symptoms and should only respond in a valid json.
     You should give questions to ask the user for better context.
