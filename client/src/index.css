@@ -2,10 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     font-family: Poppins;
 }
 
-p, span, label, input {
+p,
+span,
+label,
+input {
     font-family: Inter;
+}
+
+input[type="radio"] {
+    accent-color: #34d399;
+
+    /* TODO solve the black ring */
+
+    /* Optional: Adjust size */
+    width: 20px;
+    height: 20px;
 }

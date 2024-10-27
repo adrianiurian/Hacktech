@@ -16,6 +16,7 @@ type ButtonProps = {
     onClick: () => void;
     className?: string;
     outlined?: boolean;
+    disabled?: boolean;
     styleType?:
         | "default"
         | "primary"
@@ -31,6 +32,7 @@ function Button({
     className,
     outlined,
     styleType = "default",
+    disabled,
     ...props
 }: ButtonProps) {
     const fullStyles = {
@@ -65,7 +67,12 @@ function Button({
             : fullStyles[styleType] + " ");
 
     return (
-        <button onClick={onClick} className={cssClasses + " "} {...props}>
+        <button
+            onClick={onClick}
+            className={cssClasses + " "}
+            disabled={disabled}
+            {...props}
+        >
             {children}
         </button>
     );

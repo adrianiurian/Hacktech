@@ -15,7 +15,7 @@ export default function FormCard({
         <div
             className={"p-6 border-stone-300 rounded-2xl border-2 " + className}
         >
-            <h3 className="text-xl font-bold text-stone-700 pb-6">{title}</h3>
+            <h3 className='text-xl font-bold text-stone-700 pb-4'>{title}</h3>
 
             {children}
         </div>
