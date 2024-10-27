@@ -12,8 +12,7 @@ class GoogleFit(Base):
     user_id = Column(String(255), ForeignKey("users.id"), nullable=False)
     user = relationship(User)
 
-    def __init__(self, id, parameter_name, parameter_value, user_id) -> None:
-        self.id = id
+    def __init__(self, parameter_name, parameter_value, user_id) -> None:
         self.parameter_name = parameter_name
         self.parameter_value = parameter_value
         self.user_id = user_id

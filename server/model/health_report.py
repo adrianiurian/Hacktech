@@ -14,8 +14,7 @@ class HealthReport(Base):
     user_id = Column(String(255), ForeignKey("users.id"), nullable=False)
     user = relationship(User)
 
-    def __init__(self, id, text, user_id, file_name, file_path) -> None:
-        self.id = id
+    def __init__(self, text, user_id, file_name, file_path) -> None:
         self.text = text
         self.user_id = user_id
         self.file_name = file_name

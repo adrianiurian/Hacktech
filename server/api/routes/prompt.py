@@ -2,6 +2,7 @@ import logging
 
 from fastapi import APIRouter, Depends, Response, status, Form, UploadFile
 from fastapi.responses import StreamingResponse
+from fastapi.security import OAuth2PasswordBearer
 # from dependencies.database import get_db_session
 
 from pydantic import BaseModel
@@ -17,11 +18,14 @@ router = APIRouter(prefix="/api/prompting", tags=["Prompting"], include_in_schem
 
 INFERENCE_LINK = "https://inference.ccrolabs.com/api/generate"
 
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+
 class BodySymptom(BaseModel):
     symptoms: str
 
 @router.get("/questions")
-def get_questions(symptom: BodySymptom, response: Response, db_session = Depends(get_db_session)):
+def get_questions(symptom: BodySymptom, response: Response, db_session = Depends(get_db_session), token: str = Depends(oauth2_scheme)):
     symptoms = symptom.symptoms
 
     logger.info("Symptoms: " + symptoms)

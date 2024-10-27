@@ -11,8 +11,7 @@ class Question(Base):
     user_id = Column(String(255), ForeignKey("users.id"), nullable=False)
     user = relationship(User)
 
-    def __init__(self, id, question_text, user_id) -> None:
-        self.id = id
+    def __init__(self, question_text, user_id) -> None:
         self.question_text = question_text
         self.user_id = user_id
 

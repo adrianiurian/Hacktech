@@ -23,7 +23,7 @@ def create_report(context: BodyContext, response: Response, db_session = Depends
 
     logger.info("Context: " + context_text)
 
-    new_report = Context(1, context.text, "1234")
+    new_report = Context(context.text, "1234")
 
     db_session.add(new_report)
     db_session.commit()

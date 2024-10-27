@@ -17,16 +17,18 @@ router = APIRouter(prefix="/api/create-medication", tags=["Create-Medication"], 
 
 INFERENCE_LINK = "https://inference.ccrolabs.com/api/generate"
 
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
 class BodyMedication(BaseModel):
     medications: str
 
 @router.post("/")
-def create_medication(medication: BodyMedication, response: Response, db_session = Depends(get_db_session)):
+def create_medication(medication: BodyMedication, response: Response, token: str = Depends(oauth2_scheme), db_session = Depends(get_db_session)):
     medications_string = medication.medications
 
     logger.info("Medications: " + medications_string)
 
-    new_medicamentation = Medicamentation(1, medications_string, "1234")
+    new_medicamentation = Medicamentation(medications_string, token)
 
     db_session.add(new_medicamentation)
     db_session.commit()
