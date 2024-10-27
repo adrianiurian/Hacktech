@@ -8,6 +8,7 @@ from fastapi.security import OAuth2PasswordBearer
 from model.health_report import HealthReport
 # from dependencies.database import get_db_session
 
+
 import json
 from fastapi.exceptions import HTTPException
 from data.database import get_db_session
@@ -31,7 +32,7 @@ class HealthReportResponse(BaseModel):
         orm_mode = True
 
 @router.get("/health-report/", response_model=HealthReportResponse)
-def get_health_report(file_path: str, file_name: str, db: Session = Depends(get_db)):
+def get_health_report(file_path: str, file_name: str, db = Depends(get_db_session)):
     report = db.query(HealthReport).filter_by(file_path=file_path, file_name=file_name).first()
     if not report:
         raise HTTPException(status_code=404, detail="Report not found")
