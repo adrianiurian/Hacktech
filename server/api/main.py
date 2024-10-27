@@ -24,18 +24,18 @@ def make_app():
         "https://hacktech-deploy-296479925771.europe-west4.run.app"
     ]
 
+    from api.routes import prompt
+    from api.routes import auth
+
+    _app.include_router(prompt.router)
+    _app.include_router(auth.router)
+
     _app.add_middleware(
         CORSMiddleware,
         allow_origins=origins,
         allow_methods=["*"],
         allow_headers=["*"],
     )
-
-    from api.routes import prompt
-    from api.routes import auth
-
-    _app.include_router(prompt.router)
-    _app.include_router(auth.router)
 
     return _app
 
