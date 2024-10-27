@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 import FormCard from "../components/FormCard";
@@ -6,28 +6,30 @@ import useAPI from "../api/HealthAPI";
 
 type QuestionType = {
     question: string;
-    answers: AnswerType[];
+    answers: string[];
 };
-
-type AnswerType = {
-    answer: string;
-};
-
-function Question({ question }: { question: QuestionType }) {
-    console.log(question);
-    return <div>Question</div>;
-}
 
 export default function RequestPage() {
     const [baseSymptom, setBaseSymptom] = useState("");
-    const [questions, setQuestions] = useState([]);
+    const [questions, setQuestions] = useState<QuestionType[]>([]);
     const [medication, setMedication] = useState("");
-
-    useEffect(() => {
-        setQuestions([]);
-    }, []);
+    const [loadingQuestions, setLoadingQuestions] = useState(false);
 
     const { postQuestions } = useAPI();
+
+    function postSymptoms(symptoms: string) {
+        setLoadingQuestions(true);
+        postQuestions(symptoms)
+            .then((data) => {
+                console.log(data);
+                setLoadingQuestions(false);
+                setQuestions(data.questions_to_ask);
+            })
+            .catch((error) => {
+                console.error(error);
+                setLoadingQuestions(false);
+            });
+    }
 
     return (
         <div className='flex flex-col gap-6 px-6'>
@@ -52,7 +54,7 @@ export default function RequestPage() {
                         </label>
                         <Button
                             onClick={() => {
-                                postQuestions(baseSymptom);
+                                postSymptoms(baseSymptom);
                             }}
                             outlined
                             styleType='success'
@@ -63,14 +65,42 @@ export default function RequestPage() {
 
                     {questions.length === 0 ? (
                         <div className='border border-stone-400 text-stone-400 rounded-lg flex justify-center items-center flex-1'>
-                            Please enter your symptoms in order to get follow-up
-                            questions.
+                            {loadingQuestions
+                                ? "Preparing follow-up questions"
+                                : "Please enter your symptoms in order to get follow-up questions."}
                         </div>
                     ) : (
                         <div>
-                            {questions.map((question, index) => (
-                                <Question key={index} question={question} />
-                            ))}
+                            <h3 className='text-xl font-bold text-stone-700 pb-6'>
+                                Follow-up Questions
+                            </h3>
+                            <form>
+                                <p>{questions[0].question}</p>
+                                <input
+                                    type='checkbox'
+                                    id='first_answer'
+                                    value={questions[0].answers[0]}
+                                />
+                                <label htmlFor='first_answer'>
+                                    {questions[0].answers[0]}
+                                </label>
+                                <input
+                                    type='checkbox'
+                                    id='first_answer'
+                                    value={questions[0].answers[1]}
+                                />
+                                <label htmlFor='first_answer'>
+                                    {questions[0].answers[1]}
+                                </label>
+                                <input
+                                    type='checkbox'
+                                    id='first_answer'
+                                    value={questions[0].answers[2]}
+                                />
+                                <label htmlFor='first_answer'>
+                                    {questions[0].answers[2]}
+                                </label>
+                            </form>
                         </div>
                     )}
                 </FormCard>

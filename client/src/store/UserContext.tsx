@@ -6,7 +6,6 @@ import {
     doSignInWithGoogle,
     doSignOut,
 } from "../api/AuthAPI";
-import axios, { AxiosStatic } from "axios";
 
 type UserContextType = {
     email: string;
@@ -15,7 +14,6 @@ type UserContextType = {
     login: (email: string, password: string) => void;
     googleLogin: () => void;
     logout: () => void;
-    axiosAPI: AxiosStatic;
 };
 
 const UserContext = createContext<UserContextType>({
@@ -29,7 +27,6 @@ const UserContext = createContext<UserContextType>({
         console.log(something);
     },
     logout: () => {},
-    axiosAPI: axios,
 });
 export default UserContext;
 
@@ -42,14 +39,11 @@ export function UserContextProvider({
     const [name, setName] = useState<string | null>(null);
     const [token, setToken] = useState<string | null>(null);
 
-    // useEffect(() => {
-    //     const storedToken = localStorage.getItem("token");
-    //     if (storedToken) {
-    //         setToken(storedToken);
-    //     }
-    // }, []);
-
     useEffect(() => {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+            setToken(storedToken);
+        }
         const unsubscribe = onAuthStateChanged(auth, initializeUser);
         return unsubscribe;
     }, []);
@@ -57,9 +51,8 @@ export function UserContextProvider({
     async function initializeUser(user: FirebaseUser | null) {
         if (user) {
             const token = await user.getIdToken();
-            console.log(token);
             setToken(token);
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            localStorage.setItem("token", token);
         } else {
             console.log("logout");
         }
@@ -93,7 +86,6 @@ export function UserContextProvider({
         email: email || "",
         name: name || "",
         token: token || "",
-        axiosAPI: axios,
         login,
         googleLogin,
         logout,
