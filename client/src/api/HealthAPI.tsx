@@ -12,11 +12,11 @@ const useAPI = () => {
             const response = await axiosAPI.post(
                 `${BACKEND_URL}/api/prompting/questions`,
                 {
+                    symptoms: symptoms,
+                },
+                {
                     headers: {
                         "Content-Type": "application/json",
-                    },
-                    data: {
-                        symptoms: symptoms,
                     },
                 }
             );
