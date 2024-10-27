@@ -8,6 +8,8 @@ from fastapi.security import OAuth2PasswordBearer
 from model.health_report import HealthReport
 # from dependencies.database import get_db_session
 
+import json
+from fastapi.exceptions import HTTPException
 from data.database import get_db_session
 from pydantic import BaseModel
 
@@ -33,7 +35,7 @@ def get_health_report(file_path: str, file_name: str, db: Session = Depends(get_
     report = db.query(HealthReport).filter_by(file_path=file_path, file_name=file_name).first()
     if not report:
         raise HTTPException(status_code=404, detail="Report not found")
-    report_json = jsonable_encoder({
+    report_json = json.dumps({
         "id": report.id,
         "report_text": report.report_text,
         "file_name": report.file_name,
