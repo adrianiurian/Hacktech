@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../components/UI/Input";
 import Button from "../components/UI/Button";
 import FormCard from "../components/FormCard";
@@ -14,6 +14,7 @@ type AnswerType = {
 };
 
 function Question({ question }: { question: QuestionType }) {
+    console.log(question);
     return <div>Question</div>;
 }
 
@@ -21,6 +22,10 @@ export default function RequestPage() {
     const [baseSymptom, setBaseSymptom] = useState("");
     const [questions, setQuestions] = useState([]);
     const [medication, setMedication] = useState("");
+
+    useEffect(() => {
+        setQuestions([]);
+    }, []);
 
     const { postQuestions } = useAPI();
 
