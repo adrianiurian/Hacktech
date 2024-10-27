@@ -1,7 +1,7 @@
 import logging
 
 from fastapi import APIRouter, Depends, Response
-from google_fit_service.load_data import get_fitness_data
+from api.google_fit_service.load_data import get_fitness_data
 from model.google_fit import GoogleFit
 # from dependencies.database import get_db_session
 
