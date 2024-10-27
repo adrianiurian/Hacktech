@@ -13,17 +13,23 @@ from model.symptoms import Symptom
 from data.database import get_db_session
 
 logger = logging.getLogger(__name__)
-router = APIRouter(prefix="/api/prompting", tags=["Prompting"], include_in_schema=False)
+router = APIRouter(prefix="/api/prompting",
+                   tags=["Prompting"], include_in_schema=False)
 
 INFERENCE_LINK = "https://inference.ccrolabs.com/api/generate"
+
 
 class BodySymptom(BaseModel):
     symptoms: str
 
+
 @router.get("/questions")
-def get_questions(symptom: BodySymptom, db_session = Depends(get_db_session)):
+def get_questions(symptom: BodySymptom):
     symptoms = symptom.symptoms
     logger.info("Symptoms: " + symptoms)
+
+    length = len(symptoms.symptoms)
+    return {"length": length}
 
     # new_symptom = Symptom(13, symptom.symptoms, "1234")
 
@@ -63,6 +69,7 @@ def get_questions(symptom: BodySymptom, db_session = Depends(get_db_session)):
 
     decoder = json.JSONDecoder()
     return decoder.decode(res.json()["response"])
+
 
 @router.get("/health")
 def check_health():

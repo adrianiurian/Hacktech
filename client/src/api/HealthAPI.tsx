@@ -12,6 +12,9 @@ const useAPI = () => {
             const response = await axiosAPI.get(
                 `${BACKEND_URL}/api/prompting/questions`,
                 {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
                     data: {
                         symptoms: symptoms,
                     },
