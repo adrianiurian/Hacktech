@@ -36,7 +36,7 @@ function Button({
     const fullStyles = {
         default:
             "text-slate-800 hover:text-slate-900 bg-white hover:bg-slate-100 ",
-        primary: "text-white bg-blue-500 hover:bg-blue-600 ",
+        primary: "text-white bg-emerald-400 hover:bg-emerald-500 ",
         secondary: "text-white bg-purple-500 hover:bg-purple-600 ",
         error: "text-white bg-red-500 hover:bg-red-600 ",
         warning: "text-white bg-yellow-500 hover:bg-yellow-600 ",
@@ -59,7 +59,7 @@ function Button({
 
     const cssClasses =
         className +
-        " flex items-center text-base py-4 px-6 rounded-2xl font-lufga " +
+        " flex items-center text-base py-3 px-8 rounded-full font-medium " +
         (outlined
             ? outlinedStyles[styleType] + " border border-solid "
             : fullStyles[styleType] + " ");

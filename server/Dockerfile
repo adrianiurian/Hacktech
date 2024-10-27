@@ -2,7 +2,6 @@
 FROM python:3.12-slim
 
 # Set the working directory in the container
-RUN cd ./server
 WORKDIR /usr/src/app
 
 # Copy the project files into the container at /usr/src/app
@@ -29,8 +28,11 @@ RUN poetry install --no-dev --no-interaction --no-ansi
 COPY . /usr/src/app
 
 # Copy the start.sh script into the container and make it executable
-COPY start.sh /usr/src/app/
-RUN sed -i 's/\r$//' /usr/src/app/start.sh && chmod +x /usr/src/app/start.sh
+# COPY start.sh /usr/src/app/
+# RUN sed -i 's/\r$//' /usr/src/app/start.sh && chmod +x /usr/src/app/start.sh
 
-# Command to run the start.sh script
-CMD ["/usr/src/app/start.sh"]
+#Razvan e ciocan
+EXPOSE 8001
+
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8001"]# Command to run the start.sh script
+# CMD ["/usr/src/app/start.sh"]

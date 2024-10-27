@@ -2,7 +2,7 @@ import logging
 import os
 
 # from dotenv import load_dotenv
-from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import CORSMiddleware
 
 # from dependencies.environment import validate_local_environment
 
@@ -20,22 +20,24 @@ def make_app():
 
     origins = [
         "http://localhost",
-        "http://localhost:8081",
+        "http://localhost:5173",
+        "https://hacktech-deploy-296479925771.europe-west4.run.app"
     ]
-
-    _app.add_middleware(
-        CORSMiddleware,
-        allow_origins=["*"],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
 
     from api.routes import prompt
     from api.routes import auth
+    from api.routes import file
 
     _app.include_router(prompt.router)
     _app.include_router(auth.router)
+    _app.include_router(file.router)
+
+    _app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
     return _app
 
