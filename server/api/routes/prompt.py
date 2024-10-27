@@ -25,11 +25,6 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 class BodySymptom(BaseModel):
     symptoms: str
 
-
-@router.get("/questions")
-def get_questions(symptom: BodySymptom, response: Response, db_session = Depends(get_db_session), token: str = Depends(oauth2_scheme)):
-    symptoms = symptom.symptoms
-
 @router.post("/questions")
 def get_questions(symptom: BodySymptom):
     symptoms = symptom.symptoms
@@ -37,7 +32,7 @@ def get_questions(symptom: BodySymptom):
 
 
     # new_symptom = Symptom(13, symptom.symptoms, "1234")
-    new_symptom = Symptom(1, symptoms, "1234")
+    # new_symptom = Symptom(1, symptoms, "1234")
 
     # db_session.add(new_symptom)
     # db_session.commit()
@@ -75,12 +70,10 @@ def get_questions(symptom: BodySymptom):
 
     decoder = json.JSONDecoder()
 
+    questions = res.json()["response"]
 
+    return decoder.decode(questions)
 
 @router.get("/health")
 def check_health():
     return "Api is Up!"
-    questions = res.json()["response"]
-
-
-    return decoder.decode(questions)
