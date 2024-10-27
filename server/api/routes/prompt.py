@@ -28,9 +28,6 @@ def get_questions(symptom: BodySymptom):
     symptoms = symptom.symptoms
     logger.info("Symptoms: " + symptoms)
 
-    length = len(symptoms)
-    return {"length": length}
-
     # new_symptom = Symptom(13, symptom.symptoms, "1234")
 
     # db_session.add(new_symptom)

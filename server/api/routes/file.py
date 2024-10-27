@@ -36,7 +36,7 @@ def work_file(response: Response, uploaded_file: UploadFile, token: str = Depend
 
     PROMPT = """
     You are a helpful assistant specialized in medical tasks. You will be given a health report of any type and should summary it extensively keeping attention to health problems and unhealthy levels.
-    You will respond only with the summary and nothing else.
+    The summary should be medical focused!
     Report:
     """ + text + """
     Please respond only in valid json and in the following format:
@@ -69,4 +69,4 @@ def work_file(response: Response, uploaded_file: UploadFile, token: str = Depend
     db_session.add(report)
     db_session.commit()
 
-    return res.json()["response"]
+    return "Files processed succesfully!"
