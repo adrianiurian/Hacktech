@@ -20,8 +20,7 @@ def make_app():
 
     origins = [
         "http://localhost",
-        "http://localhost:8081",
-        "https://hacktech-backend-296479925771.europe-west4.run.app"
+        "http://localhost:8081"
     ]
 
     _app.add_middleware(
