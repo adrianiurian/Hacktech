@@ -3,6 +3,7 @@ import os
 
 # from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import ex
 
 # from dependencies.environment import validate_local_environment
 
@@ -17,6 +18,8 @@ def make_app():
     from fastapi import FastAPI
 
     _app = FastAPI()
+
+    _app.use(express.json());
 
     origins = [
         "http://localhost",
