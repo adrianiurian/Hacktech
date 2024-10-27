@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7bc763f-0e84-4cd8-a55e-6565dd57f15e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/data/database.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/model/context.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/model/health_report.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/model/medicamentation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/model/symptoms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/model/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/server/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pyproject.toml" afterDir="false" />
-    </list>
+    <list default="true" id="e7bc763f-0e84-4cd8-a55e-6565dd57f15e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,14 +31,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/razvanbocra/Documents/GitHub/Hacktech&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "be-rr",
+    "last_opened_file_path": "/Users/razvanbocra/Documents/GitHub/Hacktech"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/server/data" />

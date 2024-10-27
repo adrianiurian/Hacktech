@@ -8,6 +8,7 @@ from model.users import User
 # from dependencies.database import get_db_session
 
 from data.database import get_db_session
+
 from api.services.user_service import get_or_create_user
 
 logger = logging.getLogger(__name__)
@@ -17,7 +18,7 @@ INFERENCE_LINK = "https://inference.ccrolabs.com/api/generate"
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-@router.post("/create-user")
+@router.post("/")
 def create_user(response: Response, token: str = Depends(oauth2_scheme), db_session=Depends(get_db_session)):
     is_user = get_or_create_user(token, db_session)
     return token

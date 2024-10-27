@@ -12,8 +12,7 @@ class Context(Base):
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)  # ForeignKey to users.id
     user = relationship("User")  # Define relationship to Users model
 
-    def __init__(self, id=None, text=None, user_id=None):
-        self.id = id
+    def __init__(self,  text=None, user_id=None):
         self.text = text
         self.user_id = user_id
 
