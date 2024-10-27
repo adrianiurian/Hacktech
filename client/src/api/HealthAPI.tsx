@@ -9,7 +9,7 @@ const useAPI = () => {
 
     const postQuestions = async (symptoms: string) => {
         try {
-            const response = await axiosAPI.get(
+            const response = await axiosAPI.post(
                 `${BACKEND_URL}/api/prompting/questions`,
                 {
                     headers: {

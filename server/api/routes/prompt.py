@@ -23,7 +23,7 @@ class BodySymptom(BaseModel):
     symptoms: str
 
 
-@router.get("/questions")
+@router.post("/questions")
 def get_questions(symptom: BodySymptom):
     symptoms = symptom.symptoms
     logger.info("Symptoms: " + symptoms)
