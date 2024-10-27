@@ -18,8 +18,6 @@ def make_app():
 
     _app = FastAPI()
 
-    _app.use(express.json());
-
     origins = [
         "http://localhost",
         "http://localhost:8081"
