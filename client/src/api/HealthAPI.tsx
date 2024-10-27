@@ -1,8 +1,7 @@
 import { useContext } from "react";
 import UserContext from "../store/UserContext.tsx";
 
-const BACKEND_URL =
-    "https://docmed.ccrolabs.comS";
+const BACKEND_URL = "https://docmed.ccrolabs.com";
 
 const useAPI = () => {
     const { axiosAPI } = useContext(UserContext);
