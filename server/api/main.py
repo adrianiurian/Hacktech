@@ -2,7 +2,7 @@ import logging
 import os
 
 # from dotenv import load_dotenv
-from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import CORSMiddleware
 
 # from dependencies.environment import validate_local_environment
 
@@ -26,9 +26,11 @@ def make_app():
 
     from api.routes import prompt
     from api.routes import auth
+    from api.routes import file
 
     _app.include_router(prompt.router)
     _app.include_router(auth.router)
+    _app.include_router(file.router)
 
     _app.add_middleware(
         CORSMiddleware,
