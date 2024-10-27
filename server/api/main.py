@@ -3,7 +3,6 @@ import os
 
 # from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import ex
 
 # from dependencies.environment import validate_local_environment
 
